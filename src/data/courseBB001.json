@@ -1,0 +1,11 @@
+{
+  "course_id": "BB-001",
+  "title": "Build a Business",
+  "decisions": [
+    { "id": "D1", "title": "Problem" },
+    { "id": "D2", "title": "Offer" },
+    { "id": "D3", "title": "Growth" },
+    { "id": "D4", "title": "Execution" },
+    { "id": "D5", "title": "Systems" }
+  ]
+}
