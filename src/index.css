@@ -1,98 +1,21 @@
-:root {
-  --bg-light: #f4f7fb;
-  --bg-glass: rgba(255, 255, 255, 0.75);
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --text-dark: #0f172a;
-  --text-muted: #475569;
-  --primary: #2563eb;
-  --border: rgba(15, 23, 42, 0.08);
-  --shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
-
-[data-theme="dark"] {
-  --bg-light: #0b1220;
-  --bg-glass: rgba(15, 23, 42, 0.75);
-  --bg-card: rgba(15, 23, 42, 0.9);
-  --text-dark: #e5e7eb;
-  --text-muted: #94a3b8;
-  --primary: #60a5fa;
-  --border: rgba(255,255,255,0.08);
-  --shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  background: linear-gradient(180deg, var(--bg-light), #eaf0ff);
-  color: var(--text-dark);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+  color: #0f172a;
 }
 
-/* Header */
-header {
-  backdrop-filter: blur(14px);
-  background: var(--bg-glass);
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-/* Buttons */
-button {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Cards */
-.card {
-  background: var(--bg-card);
-  border-radius: 16px;
-  padding: 18px 22px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  margin-bottom: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-}
-
-/* Links */
-a {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Module action rows */
-.module-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 18px;
-  color: var(--text-dark);
-}
-
-/* Subtle divider */
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 24px 0;
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }

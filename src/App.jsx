@@ -1,74 +1,108 @@
-import { Routes, Route, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import CourseHome from "./pages/course/CourseHome";
-import Module from "./pages/course/modules/Module";
-import Video from "./pages/course/modules/Video";
-import Assignment from "./pages/course/modules/Assignment";
-import Quiz from "./pages/course/modules/Quiz";
-import Handouts from "./pages/course/modules/Handouts";
+import { useState } from "react";
+import { getUser, logout } from "./utils/auth";
+import { isAdmin } from "./utils/admin";
+import { courses } from "./data/courses";
+import { hasAccess } from "./utils/purchase";
 
-function Landing() {
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div className="glass card" style={{ maxWidth: 720, textAlign: "center" }}>
-        <h1 style={{ fontSize: 48, marginBottom: 12 }}>ScaleShift Learn</h1>
-        <p style={{ opacity: .8 }}>
-          Learn digital marketing the modern, practical way.
-        </p>
+import Login from "./components/Login";
+import StudentDashboard from "./components/StudentDashboard";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import PaymentModal from "./components/PaymentModal";
+import Locked from "./components/Locked";
+import CourseSidebar from "./components/CourseSidebar";
 
-        <div style={{ marginTop: 32 }}>
-          <Link to="/course">
-            <button>Start Learning</button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
+import Video from "./modules/demo/Video";
+import Assignment from "./modules/demo/Assignment";
+import Quiz from "./modules/demo/Quiz";
+import Handout from "./modules/demo/Handout";
+import CertificateCard from "./components/CertificateCard";
 
 export default function App() {
-  const [light, setLight] = useState(
-    localStorage.getItem("theme") === "light"
-  );
+  const [user, setUser] = useState(getUser());
+  const [courseId, setCourseId] = useState(null);
+  const [active, setActive] = useState("video");
+  const [buyCourse, setBuyCourse] = useState(null);
 
-  useEffect(() => {
-    const html = document.documentElement;
-    if (light) {
-      html.classList.add("light");
-      localStorage.setItem("theme", "light");
-    } else {
-      html.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-    }
-  }, [light]);
+  if (!user) return <Login onLogin={setUser} />;
+
+  /* ---------------- ADMIN ---------------- */
+  if (isAdmin()) {
+    return (
+      <div>
+        <div style={{ padding: "20px", textAlign: "right" }}>
+          <button onClick={() => { logout(); setUser(null); }}>
+            Logout
+          </button>
+        </div>
+        <AdminDashboard />
+      </div>
+    );
+  }
+
+  /* ---------------- STUDENT DASHBOARD ---------------- */
+  if (!courseId) {
+    return (
+      <div style={{ padding: "40px" }}>
+        <div style={{ textAlign: "right", marginBottom: "10px" }}>
+          <button onClick={() => { logout(); setUser(null); }}>
+            Logout
+          </button>
+        </div>
+
+        <StudentDashboard
+          onOpenCourse={(id) => setCourseId(id)}
+          onBuy={(course) => setBuyCourse(course)}
+        />
+
+        {buyCourse && (
+          <PaymentModal
+            course={buyCourse}
+            onClose={() => setBuyCourse(null)}
+          />
+        )}
+      </div>
+    );
+  }
+
+  /* ---------------- COURSE VIEW ---------------- */
+  const course = courses.find(c => c.id === courseId);
+  const access = course.price === 0 || hasAccess(course.id);
 
   return (
-    <>
-      <div
-        className="glass"
-        style={{
-          margin: 16,
-          padding: "14px 20px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}
-      >
-        <Link to="/" style={{ fontWeight: 700 }}>ScaleShift</Link>
-        <button onClick={() => setLight(!light)}>
-          {light ? "Dark" : "Light"}
+    <div style={{ display: "flex", gap: "20px", padding: "40px" }}>
+      <CourseSidebar
+        moduleId={courseId}
+        active={active}
+        onSelect={setActive}
+      />
+
+      <div style={{ flex: 1 }}>
+        {!access && <Locked course={course} />}
+
+        {access && (
+          <>
+            {active === "video" && <Video courseId={courseId} />}
+            {active === "assignment" && <Assignment courseId={courseId} />}
+            {active === "quiz" && <Quiz courseId={courseId} />}
+            {active === "handout" && <Handout courseId={courseId} />}
+
+            <CertificateCard moduleId={courseId} />
+          </>
+        )}
+
+        <button
+          onClick={() => setCourseId(null)}
+          style={{
+            marginTop: "20px",
+            background: "transparent",
+            border: "none",
+            color: "#2563eb",
+            cursor: "pointer"
+          }}
+        >
+          ← Back to Dashboard
         </button>
       </div>
-
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/course" element={<CourseHome />} />
-        <Route path="/course/module/:id" element={<Module />} />
-        <Route path="/course/module/:id/video/:vid" element={<Video />} />
-        <Route path="/course/module/:id/assignment" element={<Assignment />} />
-        <Route path="/course/module/:id/quiz" element={<Quiz />} />
-        <Route path="/course/module/:id/handouts" element={<Handouts />} />
-      </Routes>
-    </>
+    </div>
   );
 }
