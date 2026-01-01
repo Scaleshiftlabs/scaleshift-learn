@@ -1,41 +1,20 @@
 import { useParams, Link } from "react-router-dom";
 
 const ASSIGNMENTS = {
-  1: {
-    title: "Understand Digital Marketing Basics",
+  6: {
+    title: "Final Project — Digital Marketing Plan",
     instructions: [
-      "Explain digital marketing in your own words.",
-      "List 3 places where you see digital marketing daily.",
-      "Why do businesses prefer digital marketing?"
+      "Choose any product or service (real or imaginary).",
+      "Define your target audience (age, interest, location).",
+      "Choose 3 digital channels to promote it.",
+      "Explain what content you will create for each channel.",
+      "Explain how you will measure success."
     ],
-    tips: ["Use simple English."]
-  },
-  2: {
-    title: "Understand Digital Marketing Channels",
-    instructions: [
-      "List 5 digital marketing channels.",
-      "Explain organic vs paid channels.",
-      "Which channel do you use most and why?"
-    ],
-    tips: ["Think as a user."]
-  },
-  3: {
-    title: "Content Marketing Basics",
-    instructions: [
-      "What is content marketing?",
-      "List 3 types of content you consume.",
-      "Why is content important?"
-    ],
-    tips: ["No research needed."]
-  },
-  4: {
-    title: "Paid Advertising Basics",
-    instructions: [
-      "What are online ads?",
-      "Name 2 platforms where ads are shown.",
-      "Why do businesses run paid ads?"
-    ],
-    tips: ["Think from business point of view."]
+    tips: [
+      "No right or wrong answers.",
+      "Think practically, not theoretically.",
+      "This project proves your learning."
+    ]
   }
 };
 
@@ -56,12 +35,14 @@ export default function Assignment() {
     <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
       <h1>{assignment.title}</h1>
 
+      <h3>Project Steps:</h3>
       <ol>
         {assignment.instructions.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
       </ol>
 
+      <h3>Tips:</h3>
       <ul>
         {assignment.tips.map((tip, i) => (
           <li key={i}>{tip}</li>

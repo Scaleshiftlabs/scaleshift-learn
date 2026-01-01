@@ -2,22 +2,22 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
 const QUIZZES = {
-  5: {
-    title: "Analytics Basics — Quiz",
+  6: {
+    title: "Final Review Quiz",
     questions: [
       {
-        q: "What does analytics help with?",
-        options: ["Tracking performance", "Designing posters", "Making products", "Hiring staff"],
+        q: "What is the first step in a digital marketing project?",
+        options: ["Target audience", "Running ads", "Spending money", "Posting randomly"],
         answer: 0
       },
       {
-        q: "Which is a common metric?",
-        options: ["Website visitors", "Office rent", "Electric bill", "Paper cost"],
+        q: "Why is measurement important?",
+        options: ["To improve results", "To waste time", "To confuse data", "To stop campaigns"],
         answer: 0
       },
       {
-        q: "Analytics helps businesses to?",
-        options: ["Improve decisions", "Guess results", "Ignore data", "Stop marketing"],
+        q: "Which skill is most important for marketers?",
+        options: ["Learning & adapting", "Guessing", "Copying others", "Avoiding data"],
         answer: 0
       }
     ]
@@ -66,7 +66,11 @@ export default function Quiz() {
 
       {!submitted && <button onClick={() => setSubmitted(true)}>Submit</button>}
 
-      {submitted && <p>Score: {score}/{quiz.questions.length}</p>}
+      {submitted && (
+        <p>
+          Final Score: <strong>{score}/{quiz.questions.length}</strong>
+        </p>
+      )}
 
       <Link to={`/course/module/${id}`}>← Back to Module</Link>
     </div>

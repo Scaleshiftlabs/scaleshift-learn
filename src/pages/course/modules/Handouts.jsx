@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 
 const HANDOUTS = {
-  5: {
-    title: "Analytics Basics — Handouts",
+  6: {
+    title: "Final Project — Templates & Guides",
     files: [
-      { name: "Analytics Metrics Overview (PDF)", url: "/handouts/module5-analytics.pdf" }
+      { name: "Digital Marketing Plan Template (PDF)", url: "/handouts/module6-project-template.pdf" },
+      { name: "Campaign Checklist (PDF)", url: "/handouts/module6-checklist.pdf" }
     ]
   }
 };
