@@ -1,25 +1,17 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import App from "./App";
-import ErrorBoundary from "./components/ErrorBoundary";
 
 const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-if (!clerkKey) {
-  document.body.innerHTML =
-    "<h1 style='color:red'>❌ VITE_CLERK_PUBLISHABLE_KEY is missing</h1>";
-} else {
-  ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <ClerkProvider publishableKey={clerkKey}>
-      <BrowserRouter>
-        <ErrorBoundary>
-          <Suspense fallback={<div style={{ color: "white" }}>Loading…</div>}>
-            <App />
-          </Suspense>
-        </ErrorBoundary>
-      </BrowserRouter>
+      <HashRouter>
+        <App />
+      </HashRouter>
     </ClerkProvider>
-  );
-}
+  </React.StrictMode>
+);
