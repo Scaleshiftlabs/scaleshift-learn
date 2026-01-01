@@ -45,7 +45,12 @@ export default function App() {
           borderBottom: "1px solid var(--border)"
         }}
       >
-        <strong>ScaleShift Learn</strong>
+        {/* LEFT: HOME */}
+        <Link to="/" style={{ fontWeight: 700 }}>
+          🏠 ScaleShift Learn
+        </Link>
+
+        {/* RIGHT: THEME TOGGLE */}
         <button onClick={() => setLight(!light)}>
           {light ? "🌙 Dark" : "☀️ Light"}
         </button>
