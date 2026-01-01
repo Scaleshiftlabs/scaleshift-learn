@@ -25,6 +25,7 @@ export default function Module() {
             ▶ Video 1
           </Link>
         </li>
+
         <li>
           <Link
             to={`/course/module/${id}/video/2`}
@@ -33,11 +34,26 @@ export default function Module() {
             ▶ Video 2
           </Link>
         </li>
-        <li>📝 Assignment</li>
-        <li>❓ Quiz</li>
+
+        <li>
+          <Link
+            to={`/course/module/${id}/assignment`}
+            style={{ color: "#38bdf8" }}
+          >
+            📝 Assignment
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to={`/course/module/${id}/quiz`}
+            style={{ color: "#38bdf8" }}
+          >
+            ❓ Quiz
+          </Link>
+        </li>
       </ul>
 
-      {/* BACK BUTTON */}
       <div style={{ marginTop: 40 }}>
         <Link
           to="/course"
