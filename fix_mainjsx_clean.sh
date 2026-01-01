@@ -1,3 +1,14 @@
+#!/bin/bash
+set -e
+
+FILE="src/main.jsx"
+BACKUP="src/main.jsx.broken.bak"
+
+echo "🧹 Cleaning main.jsx..."
+
+cp $FILE $BACKUP
+
+cat << 'EOC' > $FILE
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -23,3 +34,7 @@ if (!clerkKey) {
     </ClerkProvider>
   );
 }
+EOC
+
+echo "✅ main.jsx fixed"
+echo "📦 Backup saved as $BACKUP"

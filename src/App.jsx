@@ -1,51 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
-
-function Home() {
-  return (
-    <div style={{
-      minHeight: "100vh",
-      background: "#0f172a",
-      color: "white",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "26px",
-      fontWeight: "bold"
-    }}>
-      🚀 ScaleShift Learn — App Running
-    </div>
-  );
-}
+import CourseHome from "./pages/course/CourseHome";
+import Module from "./pages/course/modules/Module";
 
 export default function App() {
   return (
     <Routes>
-      {/* Public home */}
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Navigate to="/course" replace />} />
 
-      {/* Auth */}
-      <Route
-        path="/sign-in/*"
-        element={
-          <SignedOut>
-            <SignIn routing="path" path="/sign-in" />
-          </SignedOut>
-        }
-      />
+      <Route path="/sign-in/*" element={<SignedOut><SignIn routing="path" path="/sign-in" /></SignedOut>} />
 
-      {/* Protected area (future courses / dashboard) */}
-      <Route
-        path="/app"
-        element={
-          <SignedIn>
-            <Home />
-          </SignedIn>
-        }
-      />
+      <Route path="/course" element={<CourseHome />} />
+      <Route path="/course/module/:id" element={<SignedIn><Module /></SignedIn>} />
 
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/course" replace />} />
     </Routes>
   );
 }

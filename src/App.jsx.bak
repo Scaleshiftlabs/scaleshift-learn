@@ -1,0 +1,40 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import RoleSelect from "./pages/role/RoleSelect";
+import TeacherDashboard from "./pages/teacher/Dashboard";
+import StudentDashboard from "./pages/student/Dashboard";
+import VerifyCertificate from "./pages/VerifyCertificate";
+import CertificateAdmin from "./pages/teacher/CertificateAdmin";
+
+function getRole() {
+  return localStorage.getItem("role");
+}
+
+export default function App() {
+  return (
+    <Routes>
+      {/* 🔐 ADMIN ROUTES — MUST COME FIRST */}
+      <Route path="/admin/certificates" element={<CertificateAdmin />} />
+
+      {/* 🌍 PUBLIC ROUTES */}
+      <Route path="/verify/:id" element={<VerifyCertificate />} />
+      <Route path="/role" element={<RoleSelect />} />
+
+      {/* 🔄 ROLE REDIRECT (ONLY FOR ROOT) */}
+      <Route
+        path="/"
+        element={
+          getRole()
+            ? <Navigate to={`/${getRole()}`} replace />
+            : <Navigate to="/role" replace />
+        }
+      />
+
+      {/* 👨‍🏫 TEACHER */}
+      <Route path="/teacher/*" element={<TeacherDashboard />} />
+
+      {/* 🎓 STUDENT */}
+      <Route path="/student/*" element={<StudentDashboard />} />
+    </Routes>
+  );
+}

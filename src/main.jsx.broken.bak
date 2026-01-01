@@ -1,9 +1,17 @@
-import React, { Suspense } from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import App from "./App";
-import ErrorBoundary from "./components/ErrorBoundary";
+
+function ErrorBoundary({ children }) {
+  return (
+    <React.Suspense fallback={<div style={{color:"white"}}>Loading…</div>}>
+      {children}
+    </React.Suspense>
+  );
+}
 
 const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -15,9 +23,7 @@ if (!clerkKey) {
     <ClerkProvider publishableKey={clerkKey}>
       <BrowserRouter>
         <ErrorBoundary>
-          <Suspense fallback={<div style={{ color: "white" }}>Loading…</div>}>
-            <App />
-          </Suspense>
+          <ErrorBoundary><App /></ErrorBoundary>
         </ErrorBoundary>
       </BrowserRouter>
     </ClerkProvider>
