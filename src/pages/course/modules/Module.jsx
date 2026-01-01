@@ -3,19 +3,35 @@ import { useParams, Link } from "react-router-dom";
 export default function Module() {
   const { id } = useParams();
 
+  const actions = [
+    { label: "🎥 Videos", path: "video/1" },
+    { label: "📝 Assignment", path: "assignment" },
+    { label: "❓ Quiz", path: "quiz" },
+    { label: "📄 Handouts", path: "handouts" }
+  ];
+
   return (
-    <div style={{ padding: 32, color: "white" }}>
+    <div style={{ padding: 32, maxWidth: 700, margin: "0 auto" }}>
       <h1>Module {id}</h1>
 
-      <ul>
-        <li><Link to={`/course/module/${id}/video/1`}>Video 1</Link></li>
-        <li><Link to={`/course/module/${id}/video/2`}>Video 2</Link></li>
-        <li><Link to={`/course/module/${id}/assignment`}>Assignment</Link></li>
-        <li><Link to={`/course/module/${id}/quiz`}>Quiz</Link></li>
-        <li><Link to={`/course/module/${id}/handouts`}>Handouts</Link></li>
-      </ul>
+      <div style={{ display: "grid", gap: 12, marginTop: 24 }}>
+        {actions.map(a => (
+          <Link key={a.path} to={`/course/module/${id}/${a.path}`}>
+            <div style={{
+              padding: 16,
+              borderRadius: 10,
+              background: "#020617",
+              border: "1px solid #1e293b"
+            }}>
+              {a.label}
+            </div>
+          </Link>
+        ))}
+      </div>
 
-      <Link to="/course">← Back to Course</Link>
+      <div style={{ marginTop: 32 }}>
+        <Link to="/course">← Back to Course</Link>
+      </div>
     </div>
   );
 }
