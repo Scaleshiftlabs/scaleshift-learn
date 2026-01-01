@@ -5,8 +5,8 @@ const HANDOUTS = {
     title: "Marketing Channels — Handouts",
     files: [
       {
-        name: "Channels Overview",
-        url: "/handouts/channels.txt"
+        name: "Channels Overview (PDF)",
+        url: "/handouts/channels.pdf"
       }
     ]
   }
@@ -29,23 +29,15 @@ export default function Handouts() {
     <div style={{ padding: 32, color: "white", maxWidth: 800 }}>
       <h1>{data.title}</h1>
 
-      <ul style={{ marginTop: 16 }}>
+      <ul>
         {data.files.map((f, i) => (
-          <li key={i} style={{ marginBottom: 8 }}>
-            <a
-              href={f.url}
-              download
-              style={{ color: "#38bdf8" }}
-            >
-              ⬇ Download {f.name}
-            </a>
+          <li key={i}>
+            <a href={f.url} download>⬇ Download {f.name}</a>
           </li>
         ))}
       </ul>
 
-      <div style={{ marginTop: 32 }}>
-        <Link to={`/course/module/${id}`}>← Back to Module</Link>
-      </div>
+      <Link to={`/course/module/${id}`}>← Back to Module</Link>
     </div>
   );
 }
