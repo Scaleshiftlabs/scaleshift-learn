@@ -26,20 +26,38 @@ function Landing() {
 }
 
 export default function App() {
-  const [light, setLight] = useState(false);
+  const getInitialTheme = () => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "light";
+    return window.matchMedia("(prefers-color-scheme: light)").matches;
+  };
+
+  const [light, setLight] = useState(getInitialTheme);
 
   useEffect(() => {
     const html = document.documentElement;
-    if (light) html.classList.add("light");
-    else html.classList.remove("light");
+    if (light) {
+      html.classList.add("light");
+      localStorage.setItem("theme", "light");
+    } else {
+      html.classList.remove("light");
+      localStorage.setItem("theme", "dark");
+    }
   }, [light]);
 
   return (
     <>
-      <div style={{ padding: "12px 20px", display: "flex", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
+      <div style={{
+        padding: "12px 20px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderBottom: "1px solid var(--border)"
+      }}>
         <Link to="/" style={{ fontWeight: 700 }}>Home</Link>
+
         <button onClick={() => setLight(!light)}>
-          {light ? "Dark Mode" : "Light Mode"}
+          {light ? "🌙 Dark" : "☀️ Light"}
         </button>
       </div>
 
