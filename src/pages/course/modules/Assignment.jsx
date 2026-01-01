@@ -8,25 +8,34 @@ const ASSIGNMENTS = {
       "List 3 places where you see digital marketing daily.",
       "Why do businesses prefer digital marketing?"
     ],
-    tips: ["Use simple English.", "Daily life examples are enough."]
+    tips: ["Use simple English."]
   },
   2: {
     title: "Understand Digital Marketing Channels",
     instructions: [
-      "List any 5 digital marketing channels.",
+      "List 5 digital marketing channels.",
       "Explain organic vs paid channels.",
       "Which channel do you use most and why?"
     ],
-    tips: ["Think as a user.", "Short answers are fine."]
+    tips: ["Think as a user."]
   },
   3: {
     title: "Content Marketing Basics",
     instructions: [
-      "What is content marketing? Explain simply.",
-      "List 3 types of content you consume daily.",
-      "Why is helpful content important for businesses?"
+      "What is content marketing?",
+      "List 3 types of content you consume.",
+      "Why is content important?"
     ],
-    tips: ["Think from user experience.", "No research needed."]
+    tips: ["No research needed."]
+  },
+  4: {
+    title: "Paid Advertising Basics",
+    instructions: [
+      "What are online ads?",
+      "Name 2 platforms where ads are shown.",
+      "Why do businesses run paid ads?"
+    ],
+    tips: ["Think from business point of view."]
   }
 };
 
@@ -47,23 +56,19 @@ export default function Assignment() {
     <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
       <h1>{assignment.title}</h1>
 
-      <h3 style={{ marginTop: 24 }}>What you need to do:</h3>
       <ol>
         {assignment.instructions.map((item, i) => (
-          <li key={i} style={{ marginBottom: 8 }}>{item}</li>
+          <li key={i}>{item}</li>
         ))}
       </ol>
 
-      <h3 style={{ marginTop: 24 }}>Tips:</h3>
       <ul>
         {assignment.tips.map((tip, i) => (
           <li key={i}>{tip}</li>
         ))}
       </ul>
 
-      <div style={{ marginTop: 40 }}>
-        <Link to={`/course/module/${id}`}>← Back to Module</Link>
-      </div>
+      <Link to={`/course/module/${id}`}>← Back to Module</Link>
     </div>
   );
 }

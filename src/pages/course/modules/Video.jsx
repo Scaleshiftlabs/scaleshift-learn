@@ -11,7 +11,11 @@ const VIDEO_MAP = {
   },
   3: {
     1: { title: "What is Content Marketing", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    2: { title: "Types of Content (Blog, Video, Social)", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+    2: { title: "Types of Content", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+  },
+  4: {
+    1: { title: "Introduction to Online Ads", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    2: { title: "Google Ads vs Social Media Ads", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
   }
 };
 

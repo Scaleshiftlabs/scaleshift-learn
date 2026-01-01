@@ -2,28 +2,24 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
 const QUIZZES = {
-  1: {
-    title: "Digital Marketing Basics — Quiz",
+  4: {
+    title: "Paid Advertising — Quiz",
     questions: [
-      { q: "What is digital marketing?", options: ["Online marketing", "TV ads", "Shop sales", "Cold calls"], answer: 0 },
-      { q: "Which is a digital channel?", options: ["Billboard", "Instagram", "Pamphlet", "Newspaper"], answer: 1 },
-      { q: "Why businesses like digital marketing?", options: ["Cheap & measurable", "Offline only", "Limited reach", "No tracking"], answer: 0 }
-    ]
-  },
-  2: {
-    title: "Digital Channels — Quiz",
-    questions: [
-      { q: "Which is organic?", options: ["Google Ads", "Facebook Ads", "SEO", "Banner ads"], answer: 2 },
-      { q: "Paid channels help with?", options: ["Instant reach", "Free traffic", "Slow growth", "No tracking"], answer: 0 },
-      { q: "Which is social media?", options: ["Email", "Instagram", "Website", "SMS"], answer: 1 }
-    ]
-  },
-  3: {
-    title: "Content Marketing — Quiz",
-    questions: [
-      { q: "Content marketing focuses on?", options: ["Helpful content", "Only ads", "Cold calls", "Spam"], answer: 0 },
-      { q: "Which is content?", options: ["Blog post", "Billboard", "Pamphlet", "Poster"], answer: 0 },
-      { q: "Good content helps to?", options: ["Build trust", "Annoy users", "Increase spam", "Hide brand"], answer: 0 }
+      {
+        q: "What are paid ads?",
+        options: ["Free traffic", "Advertisements you pay for", "Offline posters", "Emails only"],
+        answer: 1
+      },
+      {
+        q: "Which platform shows paid ads?",
+        options: ["Google", "Notebook", "Radio", "Pamphlet"],
+        answer: 0
+      },
+      {
+        q: "Paid ads are useful for?",
+        options: ["Quick visibility", "Slow growth", "No tracking", "Free reach"],
+        answer: 0
+      }
     ]
   }
 };
@@ -43,15 +39,18 @@ export default function Quiz() {
     );
   }
 
-  const score = quiz.questions.reduce((acc, q, i) => acc + (selected[i] === q.answer ? 1 : 0), 0);
+  const score = quiz.questions.reduce(
+    (acc, q, i) => acc + (selected[i] === q.answer ? 1 : 0),
+    0
+  );
 
   return (
-    <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
+    <div style={{ padding: 32, color: "white" }}>
       <h1>{quiz.title}</h1>
 
       {quiz.questions.map((q, qi) => (
-        <div key={qi} style={{ marginTop: 24 }}>
-          <p><strong>{qi + 1}. {q.q}</strong></p>
+        <div key={qi}>
+          <p>{q.q}</p>
           {q.options.map((opt, oi) => (
             <label key={oi} style={{ display: "block" }}>
               <input
@@ -59,27 +58,18 @@ export default function Quiz() {
                 name={`q-${qi}`}
                 disabled={submitted}
                 onChange={() => setSelected({ ...selected, [qi]: oi })}
-              /> {opt}
+              />{" "}
+              {opt}
             </label>
           ))}
         </div>
       ))}
 
-      {!submitted && (
-        <button style={{ marginTop: 24 }} onClick={() => setSubmitted(true)}>
-          Submit Quiz
-        </button>
-      )}
+      {!submitted && <button onClick={() => setSubmitted(true)}>Submit</button>}
 
-      {submitted && (
-        <p style={{ marginTop: 16 }}>
-          Your score: <strong>{score}/{quiz.questions.length}</strong>
-        </p>
-      )}
+      {submitted && <p>Score: {score}/{quiz.questions.length}</p>}
 
-      <div style={{ marginTop: 40 }}>
-        <Link to={`/course/module/${id}`}>← Back to Module</Link>
-      </div>
+      <Link to={`/course/module/${id}`}>← Back to Module</Link>
     </div>
   );
 }
