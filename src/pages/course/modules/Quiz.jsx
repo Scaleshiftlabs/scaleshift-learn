@@ -2,22 +2,22 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
 const QUIZZES = {
-  4: {
-    title: "Paid Advertising — Quiz",
+  5: {
+    title: "Analytics Basics — Quiz",
     questions: [
       {
-        q: "What are paid ads?",
-        options: ["Free traffic", "Advertisements you pay for", "Offline posters", "Emails only"],
-        answer: 1
-      },
-      {
-        q: "Which platform shows paid ads?",
-        options: ["Google", "Notebook", "Radio", "Pamphlet"],
+        q: "What does analytics help with?",
+        options: ["Tracking performance", "Designing posters", "Making products", "Hiring staff"],
         answer: 0
       },
       {
-        q: "Paid ads are useful for?",
-        options: ["Quick visibility", "Slow growth", "No tracking", "Free reach"],
+        q: "Which is a common metric?",
+        options: ["Website visitors", "Office rent", "Electric bill", "Paper cost"],
+        answer: 0
+      },
+      {
+        q: "Analytics helps businesses to?",
+        options: ["Improve decisions", "Guess results", "Ignore data", "Stop marketing"],
         answer: 0
       }
     ]
@@ -58,8 +58,7 @@ export default function Quiz() {
                 name={`q-${qi}`}
                 disabled={submitted}
                 onChange={() => setSelected({ ...selected, [qi]: oi })}
-              />{" "}
-              {opt}
+              /> {opt}
             </label>
           ))}
         </div>

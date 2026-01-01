@@ -1,10 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 
 const HANDOUTS = {
-  4: {
-    title: "Paid Advertising — Handouts",
+  5: {
+    title: "Analytics Basics — Handouts",
     files: [
-      { name: "Intro to Online Ads (PDF)", url: "/handouts/module4-ads.pdf" }
+      { name: "Analytics Metrics Overview (PDF)", url: "/handouts/module5-analytics.pdf" }
     ]
   }
 };
