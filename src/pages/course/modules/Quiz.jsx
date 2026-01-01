@@ -3,19 +3,27 @@ import { useState } from "react";
 
 const QUIZZES = {
   1: {
-    title: "Digital Marketing Basics — Quick Quiz",
+    title: "Digital Marketing Basics — Quiz",
     questions: [
       { q: "What is digital marketing?", options: ["Online marketing", "TV ads", "Shop sales", "Cold calls"], answer: 0 },
       { q: "Which is a digital channel?", options: ["Billboard", "Instagram", "Pamphlet", "Newspaper"], answer: 1 },
-      { q: "Why businesses like digital marketing?", options: ["Cheap & measurable", "Only big brands", "Limited reach", "Offline only"], answer: 0 }
+      { q: "Why businesses like digital marketing?", options: ["Cheap & measurable", "Offline only", "Limited reach", "No tracking"], answer: 0 }
     ]
   },
   2: {
-    title: "Digital Marketing Channels — Quick Quiz",
+    title: "Digital Channels — Quiz",
     questions: [
-      { q: "Which is an organic channel?", options: ["Google Ads", "Facebook Ads", "SEO", "Banner ads"], answer: 2 },
-      { q: "Paid channels mainly help in?", options: ["Instant reach", "Free traffic", "Slow growth", "No tracking"], answer: 0 },
-      { q: "Which is a social media channel?", options: ["Email", "Instagram", "Website", "SMS"], answer: 1 }
+      { q: "Which is organic?", options: ["Google Ads", "Facebook Ads", "SEO", "Banner ads"], answer: 2 },
+      { q: "Paid channels help with?", options: ["Instant reach", "Free traffic", "Slow growth", "No tracking"], answer: 0 },
+      { q: "Which is social media?", options: ["Email", "Instagram", "Website", "SMS"], answer: 1 }
+    ]
+  },
+  3: {
+    title: "Content Marketing — Quiz",
+    questions: [
+      { q: "Content marketing focuses on?", options: ["Helpful content", "Only ads", "Cold calls", "Spam"], answer: 0 },
+      { q: "Which is content?", options: ["Blog post", "Billboard", "Pamphlet", "Poster"], answer: 0 },
+      { q: "Good content helps to?", options: ["Build trust", "Annoy users", "Increase spam", "Hide brand"], answer: 0 }
     ]
   }
 };
@@ -46,8 +54,12 @@ export default function Quiz() {
           <p><strong>{qi + 1}. {q.q}</strong></p>
           {q.options.map((opt, oi) => (
             <label key={oi} style={{ display: "block" }}>
-              <input type="radio" name={`q-${qi}`} disabled={submitted}
-                onChange={() => setSelected({ ...selected, [qi]: oi })} /> {opt}
+              <input
+                type="radio"
+                name={`q-${qi}`}
+                disabled={submitted}
+                onChange={() => setSelected({ ...selected, [qi]: oi })}
+              /> {opt}
             </label>
           ))}
         </div>

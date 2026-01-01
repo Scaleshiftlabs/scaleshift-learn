@@ -1,14 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 
 const HANDOUTS = {
-  1: {
-    title: "Digital Marketing Basics — Handouts",
-    files: [{ name: "Basics Notes (PDF)", url: "/handouts/module1-basics.pdf" }]
-  },
-  2: {
-    title: "Digital Marketing Channels — Handouts",
-    files: [{ name: "Channels Overview (PDF)", url: "/handouts/module2-channels.pdf" }]
-  }
+  1: { title: "Basics — Handouts", files: [{ name: "Basics Notes (PDF)", url: "/handouts/module1-basics.pdf" }] },
+  2: { title: "Channels — Handouts", files: [{ name: "Channels Overview (PDF)", url: "/handouts/module2-channels.pdf" }] },
+  3: { title: "Content Marketing — Handouts", files: [{ name: "Content Types & Tips (PDF)", url: "/handouts/module3-content.pdf" }] }
 };
 
 export default function Handouts() {

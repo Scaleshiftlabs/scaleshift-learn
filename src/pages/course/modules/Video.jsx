@@ -8,6 +8,10 @@ const VIDEO_MAP = {
   2: {
     1: { title: "Overview of Digital Channels", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
     2: { title: "Organic vs Paid Channels", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+  },
+  3: {
+    1: { title: "What is Content Marketing", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    2: { title: "Types of Content (Blog, Video, Social)", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
   }
 };
 
@@ -27,7 +31,6 @@ export default function Video() {
   return (
     <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
       <h1>{video.title}</h1>
-
       <div style={{ marginTop: 20 }}>
         <iframe
           width="100%"
@@ -38,7 +41,6 @@ export default function Video() {
           allowFullScreen
         />
       </div>
-
       <div style={{ marginTop: 30 }}>
         <Link to={`/course/module/${id}`}>← Back to Module</Link>
       </div>

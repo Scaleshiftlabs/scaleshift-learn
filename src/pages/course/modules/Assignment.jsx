@@ -8,16 +8,25 @@ const ASSIGNMENTS = {
       "List 3 places where you see digital marketing daily.",
       "Why do businesses prefer digital marketing?"
     ],
-    tips: ["Use simple English.", "No need to search online.", "Use daily life examples."]
+    tips: ["Use simple English.", "Daily life examples are enough."]
   },
   2: {
     title: "Understand Digital Marketing Channels",
     instructions: [
-      "List any 5 digital marketing channels you know.",
-      "Explain the difference between organic and paid channels.",
-      "Mention one channel you personally use the most and why."
+      "List any 5 digital marketing channels.",
+      "Explain organic vs paid channels.",
+      "Which channel do you use most and why?"
     ],
-    tips: ["Think from user point of view.", "Simple answers are enough."]
+    tips: ["Think as a user.", "Short answers are fine."]
+  },
+  3: {
+    title: "Content Marketing Basics",
+    instructions: [
+      "What is content marketing? Explain simply.",
+      "List 3 types of content you consume daily.",
+      "Why is helpful content important for businesses?"
+    ],
+    tips: ["Think from user experience.", "No research needed."]
   }
 };
 
