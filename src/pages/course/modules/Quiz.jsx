@@ -5,36 +5,17 @@ const QUIZZES = {
   1: {
     title: "Digital Marketing Basics — Quick Quiz",
     questions: [
-      {
-        q: "What is digital marketing?",
-        options: [
-          "Marketing using digital channels like websites and social media",
-          "Only running ads on TV",
-          "Selling products in physical shops only",
-          "Calling customers on phone"
-        ],
-        answer: 0
-      },
-      {
-        q: "Which of the following is a digital marketing channel?",
-        options: [
-          "Newspaper",
-          "Billboard",
-          "Instagram",
-          "Pamphlet"
-        ],
-        answer: 2
-      },
-      {
-        q: "Why do businesses like digital marketing?",
-        options: [
-          "It is cheaper and measurable",
-          "It works only for big companies",
-          "It cannot reach many people",
-          "It replaces products"
-        ],
-        answer: 0
-      }
+      { q: "What is digital marketing?", options: ["Online marketing", "TV ads", "Shop sales", "Cold calls"], answer: 0 },
+      { q: "Which is a digital channel?", options: ["Billboard", "Instagram", "Pamphlet", "Newspaper"], answer: 1 },
+      { q: "Why businesses like digital marketing?", options: ["Cheap & measurable", "Only big brands", "Limited reach", "Offline only"], answer: 0 }
+    ]
+  },
+  2: {
+    title: "Digital Marketing Channels — Quick Quiz",
+    questions: [
+      { q: "Which is an organic channel?", options: ["Google Ads", "Facebook Ads", "SEO", "Banner ads"], answer: 2 },
+      { q: "Paid channels mainly help in?", options: ["Instant reach", "Free traffic", "Slow growth", "No tracking"], answer: 0 },
+      { q: "Which is a social media channel?", options: ["Email", "Instagram", "Website", "SMS"], answer: 1 }
     ]
   }
 };
@@ -48,15 +29,13 @@ export default function Quiz() {
   if (!quiz) {
     return (
       <div style={{ padding: 32, color: "white" }}>
-        <p>No quiz found for this module.</p>
+        <p>No quiz found.</p>
         <Link to={`/course/module/${id}`}>← Back to Module</Link>
       </div>
     );
   }
 
-  const score = quiz.questions.reduce((acc, q, i) => {
-    return acc + (selected[i] === q.answer ? 1 : 0);
-  }, 0);
+  const score = quiz.questions.reduce((acc, q, i) => acc + (selected[i] === q.answer ? 1 : 0), 0);
 
   return (
     <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
@@ -66,39 +45,24 @@ export default function Quiz() {
         <div key={qi} style={{ marginTop: 24 }}>
           <p><strong>{qi + 1}. {q.q}</strong></p>
           {q.options.map((opt, oi) => (
-            <label key={oi} style={{ display: "block", marginBottom: 6 }}>
-              <input
-                type="radio"
-                name={`q-${qi}`}
-                disabled={submitted}
-                onChange={() => setSelected({ ...selected, [qi]: oi })}
-              />{" "}
-              {opt}
+            <label key={oi} style={{ display: "block" }}>
+              <input type="radio" name={`q-${qi}`} disabled={submitted}
+                onChange={() => setSelected({ ...selected, [qi]: oi })} /> {opt}
             </label>
           ))}
         </div>
       ))}
 
       {!submitted && (
-        <button
-          style={{ marginTop: 24, padding: "8px 16px" }}
-          onClick={() => setSubmitted(true)}
-        >
+        <button style={{ marginTop: 24 }} onClick={() => setSubmitted(true)}>
           Submit Quiz
         </button>
       )}
 
       {submitted && (
-        <div style={{ marginTop: 24 }}>
-          <p>
-            Your score: <strong>{score} / {quiz.questions.length}</strong>
-          </p>
-          <p>
-            {score >= 2
-              ? "Good job! You understand the basics."
-              : "No worries. Rewatch the videos and try again."}
-          </p>
-        </div>
+        <p style={{ marginTop: 16 }}>
+          Your score: <strong>{score}/{quiz.questions.length}</strong>
+        </p>
       )}
 
       <div style={{ marginTop: 40 }}>

@@ -2,14 +2,12 @@ import { useParams, Link } from "react-router-dom";
 
 const VIDEO_MAP = {
   1: {
-    1: {
-      title: "What is Digital Marketing",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    },
-    2: {
-      title: "Why Digital Marketing Matters",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    }
+    1: { title: "What is Digital Marketing", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    2: { title: "Why Digital Marketing Matters", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+  },
+  2: {
+    1: { title: "Overview of Digital Channels", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    2: { title: "Organic vs Paid Channels", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
   }
 };
 

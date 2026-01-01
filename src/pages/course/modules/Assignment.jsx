@@ -4,15 +4,20 @@ const ASSIGNMENTS = {
   1: {
     title: "Understand Digital Marketing Basics",
     instructions: [
-      "In your own words, explain what digital marketing means.",
-      "List any 3 places where you have seen digital marketing (example: Google, Instagram, YouTube, websites).",
-      "Explain why businesses prefer digital marketing over traditional methods."
+      "Explain digital marketing in your own words.",
+      "List 3 places where you see digital marketing daily.",
+      "Why do businesses prefer digital marketing?"
     ],
-    tips: [
-      "Write in simple English.",
-      "No need to search online.",
-      "Use examples from your daily life."
-    ]
+    tips: ["Use simple English.", "No need to search online.", "Use daily life examples."]
+  },
+  2: {
+    title: "Understand Digital Marketing Channels",
+    instructions: [
+      "List any 5 digital marketing channels you know.",
+      "Explain the difference between organic and paid channels.",
+      "Mention one channel you personally use the most and why."
+    ],
+    tips: ["Think from user point of view.", "Simple answers are enough."]
   }
 };
 
@@ -23,7 +28,7 @@ export default function Assignment() {
   if (!assignment) {
     return (
       <div style={{ padding: 32, color: "white" }}>
-        <p>No assignment found for this module.</p>
+        <p>No assignment found.</p>
         <Link to={`/course/module/${id}`}>← Back to Module</Link>
       </div>
     );
@@ -35,15 +40,15 @@ export default function Assignment() {
 
       <h3 style={{ marginTop: 24 }}>What you need to do:</h3>
       <ol>
-        {assignment.instructions.map((item, index) => (
-          <li key={index} style={{ marginBottom: 8 }}>{item}</li>
+        {assignment.instructions.map((item, i) => (
+          <li key={i} style={{ marginBottom: 8 }}>{item}</li>
         ))}
       </ol>
 
       <h3 style={{ marginTop: 24 }}>Tips:</h3>
       <ul>
-        {assignment.tips.map((tip, index) => (
-          <li key={index}>{tip}</li>
+        {assignment.tips.map((tip, i) => (
+          <li key={i}>{tip}</li>
         ))}
       </ul>
 
