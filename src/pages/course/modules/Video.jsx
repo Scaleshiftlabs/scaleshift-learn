@@ -1,42 +1,48 @@
 import { useParams, Link } from "react-router-dom";
 
+const VIDEO_MAP = {
+  1: {
+    1: {
+      title: "What is Digital Marketing",
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    2: {
+      title: "Why Digital Marketing Matters",
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    }
+  }
+};
+
 export default function Video() {
   const { id, vid } = useParams();
+  const video = VIDEO_MAP[id]?.[vid];
+
+  if (!video) {
+    return (
+      <div style={{ padding: 32, color: "white" }}>
+        <p>Video not found.</p>
+        <Link to={`/course/module/${id}`}>← Back to Module</Link>
+      </div>
+    );
+  }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#0f172a",
-        color: "white",
-        padding: 32,
-        maxWidth: 900
-      }}
-    >
-      <h1>Module {id} — Video {vid}</h1>
+    <div style={{ padding: 32, color: "white", maxWidth: 900 }}>
+      <h1>{video.title}</h1>
 
       <div style={{ marginTop: 20 }}>
-        <video width="100%" controls>
-          <source src="/sample.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <iframe
+          width="100%"
+          height="420"
+          src={video.url}
+          title={video.title}
+          frameBorder="0"
+          allowFullScreen
+        />
       </div>
 
-      {/* NAVIGATION */}
-      <div style={{ marginTop: 40, display: "flex", gap: 24 }}>
-        <Link
-          to={`/course/module/${id}`}
-          style={{ color: "#a5b4fc", textDecoration: "none" }}
-        >
-          ← Back to Module
-        </Link>
-
-        <Link
-          to="/course"
-          style={{ color: "#a5b4fc", textDecoration: "none" }}
-        >
-          ⬅ Back to Course
-        </Link>
+      <div style={{ marginTop: 30 }}>
+        <Link to={`/course/module/${id}`}>← Back to Module</Link>
       </div>
     </div>
   );
