@@ -10,11 +10,12 @@ import Handouts from "./pages/course/modules/Handouts";
 function Landing() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ maxWidth: 700, padding: 32, textAlign: "center" }}>
-        <h1 style={{ fontSize: 42 }}>ScaleShift Learn</h1>
-        <p style={{ color: "var(--muted)" }}>
-          Learn digital marketing the simple, practical way.
+      <div className="glass card" style={{ maxWidth: 720, textAlign: "center" }}>
+        <h1 style={{ fontSize: 48, marginBottom: 12 }}>ScaleShift Learn</h1>
+        <p style={{ opacity: .8 }}>
+          Learn digital marketing the modern, practical way.
         </p>
+
         <div style={{ marginTop: 32 }}>
           <Link to="/course">
             <button>Start Learning</button>
@@ -26,13 +27,9 @@ function Landing() {
 }
 
 export default function App() {
-  const getInitialTheme = () => {
-    const saved = localStorage.getItem("theme");
-    if (saved) return saved === "light";
-    return window.matchMedia("(prefers-color-scheme: light)").matches;
-  };
-
-  const [light, setLight] = useState(getInitialTheme);
+  const [light, setLight] = useState(
+    localStorage.getItem("theme") === "light"
+  );
 
   useEffect(() => {
     const html = document.documentElement;
@@ -47,17 +44,19 @@ export default function App() {
 
   return (
     <>
-      <div style={{
-        padding: "12px 20px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderBottom: "1px solid var(--border)"
-      }}>
-        <Link to="/" style={{ fontWeight: 700 }}>Home</Link>
-
+      <div
+        className="glass"
+        style={{
+          margin: 16,
+          padding: "14px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        <Link to="/" style={{ fontWeight: 700 }}>ScaleShift</Link>
         <button onClick={() => setLight(!light)}>
-          {light ? "🌙 Dark" : "☀️ Light"}
+          {light ? "Dark" : "Light"}
         </button>
       </div>
 
